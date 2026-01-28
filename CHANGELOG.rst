@@ -2,6 +2,11 @@
 Changelog for package proton_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Switch to ExternalProject
+* Contributors: Roni Kreinin
+
 0.1.0 (2026-01-28)
 ------------------
 * Merge pull request `#2 <https://github.com/clearpathrobotics/proton_vendor/issues/2>`_ from clearpathrobotics/feature/codeowners
