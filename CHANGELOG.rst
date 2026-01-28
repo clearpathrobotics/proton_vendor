@@ -2,8 +2,8 @@
 Changelog for package proton_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.0 (2026-01-28)
+------------------
 * Merge pull request `#2 <https://github.com/clearpathrobotics/proton_vendor/issues/2>`_ from clearpathrobotics/feature/codeowners
   .github folder
 * .github folder
