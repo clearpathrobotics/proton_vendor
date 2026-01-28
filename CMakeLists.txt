@@ -9,7 +9,7 @@ find_package(ament_cmake REQUIRED)
 include(FetchContent)
 FetchContent_Declare(
   proton
-  GIT_REPOSITORY https://gitlab.clearpathrobotics.com/research/proton.git
+  GIT_REPOSITORY https://github.com/clearpathrobotics/proton.git
   GIT_TAG main
 )
 
@@ -70,4 +70,3 @@ ament_export_targets(proton_vendor_targets HAS_LIBRARY_TARGET)
 ament_export_dependencies()
 
 ament_package()
-
