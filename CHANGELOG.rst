@@ -2,6 +2,11 @@
 Changelog for package proton_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add yaml-cpp dependency
+* Contributors: Roni Kreinin
+
 0.1.1 (2026-01-28)
 ------------------
 * Switch to ExternalProject
