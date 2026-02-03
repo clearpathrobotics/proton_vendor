@@ -9,7 +9,7 @@ include(ExternalProject)
 
 set(PROTON_EXTERNAL_PROJECT_NAME proton_external_project)
 set(PROTON_GIT_REPOSITORY "https://github.com/clearpathrobotics/proton.git")
-set(PROTON_GIT_TAG "main")
+set(PROTON_GIT_TAG "fix/cmake_dep")
 
 set(EXTERNAL_PROJECT_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/proton_external_build)
 set(EXTERNAL_PROJECT_SOURCE_DIR ${EXTERNAL_PROJECT_PREFIX}/src/proton)
@@ -38,7 +38,7 @@ ExternalProject_Add(${PROTON_EXTERNAL_PROJECT_NAME}
                       -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
                       -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
                       -DCMAKE_CROSSCOMPILING=OFF
-                      -DBUILD_SHARED_LIBS=ON
+                      -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
                       -DPROTON_BUILD_PROTONC=ON
                       -DPROTON_BUILD_PROTONCPP=ON
                       -DPROTON_BUILD_EXAMPLES=OFF
@@ -79,6 +79,13 @@ install(
   EXPORT proton_vendor_targets
 )
 
+
+install(
+  DIRECTORY ${EXTERNAL_PROJECT_INSTALL_DIR}/lib/cmake/proton/
+  DESTINATION share/${PROJECT_NAME}/cmake
+  FILES_MATCHING PATTERN "*.cmake"
+)
+
 ament_export_targets(proton_vendor_targets HAS_LIBRARY_TARGET)
 
-ament_package()
+ament_package(CONFIG_EXTRAS cmake/proton_vendor_extras.cmake)
