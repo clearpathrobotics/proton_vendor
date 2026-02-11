@@ -2,8 +2,8 @@
 Changelog for package proton_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2026-02-11)
+------------------
 * Using Git tag 1.0.0 of Proton.
 * Updated README.
 * Contributors: Roni Kreinin, Tony Baltovski
