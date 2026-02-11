@@ -2,6 +2,12 @@
 Changelog for package proton_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Using Git tag 1.0.0 of Proton.
+* Updated README.
+* Contributors: Roni Kreinin, Tony Baltovski
+
 0.1.2 (2026-01-29)
 ------------------
 * Add yaml-cpp dependency
