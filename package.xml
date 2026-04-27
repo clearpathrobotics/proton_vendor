@@ -2,13 +2,15 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>proton_vendor</name>
-  <version>0.0.0</version>
+  <version>1.0.0</version>
   <description>Proton vendor package</description>
-  <maintainer email="rkreinin@clearpathrobotics.com">rkreinin</maintainer>
+  <maintainer email="thomas.wallis@rockwellautomation.com">Tom Wallis</maintainer>
   <license>Apache 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>git</buildtool_depend>
+
+  <depend>proton</depend>
 
   <depend>asio</depend>
   <depend>protobuf-dev</depend>
