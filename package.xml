@@ -11,11 +11,14 @@
   <buildtool_depend>git</buildtool_depend>
   <buildtool_depend>pkg-config</buildtool_depend>
 
-  <depend>proton</depend>
+  <!-- <depend>proton</depend> -->
 
   <depend>asio</depend>
+  <depend>libboost-system-dev</depend>
+  <depend>libboost-thread-dev</depend>
   <depend>protobuf-dev</depend>
   <depend>python3-protobuf</depend>
+  <depend>python3-yaml</depend>
   <depend>yaml-cpp</depend>
 
   <export>
