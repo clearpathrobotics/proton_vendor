@@ -85,6 +85,17 @@ else()
     INTERFACE
     $<INSTALL_INTERFACE:include>
   )
+
+  # Propagate compile definitions that were used to build proton
+  # These must match the flags in the ExternalProject CONFIGURE_COMMAND above
+  target_compile_definitions(proton_vendor
+    INTERFACE
+    PROTON_ENABLE_ALLOC=1
+    PROTON_NODE_BUILDER=1
+    PROTON_NODE_BUILDER_YAML_PARSER=1
+    PROTON_NODE_BUILDER_JSON_PARSER=1
+  )
+
   target_link_libraries(proton_vendor
     INTERFACE
     ${CMAKE_INSTALL_PREFIX}/lib/libproton_core.so
