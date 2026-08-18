@@ -32,7 +32,8 @@ else()
   set(EXTERNAL_PROJECT_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/proton_external_build)
   set(EXTERNAL_PROJECT_SOURCE_DIR ${EXTERNAL_PROJECT_PREFIX}/src/proton)
   set(EXTERNAL_PROJECT_BINARY_DIR ${EXTERNAL_PROJECT_PREFIX}/build/proton)
-  set(EXTERNAL_PROJECT_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}) # Proton library should install its files (libraries, headers) into proton_vendor package install space.
+  # Proton library should install its files (libraries, headers) into proton_vendor package install space
+  set(EXTERNAL_PROJECT_INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
 
   # Use sequential build for ExternalProject to avoid file descriptor issues
   set(EXTERNAL_PROJECT_BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --parallel 1)
