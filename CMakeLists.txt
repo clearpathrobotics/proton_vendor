@@ -27,7 +27,8 @@ else()
 
   set(PROTON_EXTERNAL_PROJECT_NAME proton_external_project)
   set(PROTON_GIT_REPOSITORY "https://github.com/clearpathrobotics/proton.git")
-  set(PROTON_GIT_TAG "1.0.0")
+  # Overridable (e.g. -DPROTON_GIT_TAG=<branch>) so CI can build a matching head/base branch
+  set(PROTON_GIT_TAG "1.0.0" CACHE STRING "Git tag or branch of proton to build")
 
   set(EXTERNAL_PROJECT_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/proton_external_build)
   set(EXTERNAL_PROJECT_SOURCE_DIR ${EXTERNAL_PROJECT_PREFIX}/src/proton)
