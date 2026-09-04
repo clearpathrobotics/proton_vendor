@@ -11,14 +11,16 @@ add_library(proton_vendor::proton_vendor ALIAS proton_vendor)
 # Option to use local proton instead of downloading from GitHub
 option(PROTON_VENDOR_USE_LOCAL "Use local proton instead of downloading from GitHub" OFF)
 
+set(PROTON_MAX_PENDING_TRIGGERS 4 CACHE STRING "Number of allowable pending triggers in node_manager")
+
 if(PROTON_VENDOR_USE_LOCAL)
   # Use local proton from workspace
   find_package(proton REQUIRED)
 
   target_link_libraries(proton_vendor
     INTERFACE
-    proton::protonc
-    proton::protoncpp
+    proton::proton_core
+    proton::proton_cpp
   )
 
 else()
@@ -27,12 +29,13 @@ else()
 
   set(PROTON_EXTERNAL_PROJECT_NAME proton_external_project)
   set(PROTON_GIT_REPOSITORY "https://github.com/clearpathrobotics/proton.git")
-  set(PROTON_GIT_TAG "1.0.0")
+  set(PROTON_GIT_TAG "2.0.0")
 
   set(EXTERNAL_PROJECT_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/proton_external_build)
   set(EXTERNAL_PROJECT_SOURCE_DIR ${EXTERNAL_PROJECT_PREFIX}/src/proton)
   set(EXTERNAL_PROJECT_BINARY_DIR ${EXTERNAL_PROJECT_PREFIX}/build/proton)
-  set(EXTERNAL_PROJECT_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}) # Proton library should install its files (libraries, headers) into proton_vendor package install space.
+  # Proton library should install its files (libraries, headers) into proton_vendor package install space
+  set(EXTERNAL_PROJECT_INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
 
   # Use sequential build for ExternalProject to avoid file descriptor issues
   set(EXTERNAL_PROJECT_BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --parallel 1)
@@ -55,12 +58,15 @@ else()
       CONFIGURE_COMMAND ${CMAKE_COMMAND} -S <SOURCE_DIR> -B <BINARY_DIR>
                         -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
                         -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-                        -DCMAKE_CROSSCOMPILING=OFF
                         -DBUILD_SHARED_LIBS=ON
-                        -DPROTON_BUILD_PROTONC=ON
-                        -DPROTON_BUILD_PROTONCPP=ON
-                        -DPROTON_BUILD_EXAMPLES=OFF
+                        -DCMAKE_CXX_STANDARD=20
+                        -DCMAKE_CXX_STANDARD_REQUIRED=ON
                         -DPROTON_BUILD_TESTS=OFF
+                        -DPROTON_ENABLE_ALLOC=ON
+                        -DPROTON_NODE_BUILDER=ON
+                        -DPROTON_NODE_BUILDER_YAML_PARSER=ON
+                        -DPROTON_NODE_BUILDER_JSON_PARSER=ON
+                        -DPROTON_MAX_PENDING_TRIGGERS=${PROTON_MAX_PENDING_TRIGGERS}
                         -DPROTON_INSTALL=ON
 
       # build step
@@ -83,10 +89,22 @@ else()
     INTERFACE
     $<INSTALL_INTERFACE:include>
   )
+
+  # Propagate compile definitions that were used to build proton
+  # These must match the flags in the ExternalProject CONFIGURE_COMMAND above
+  target_compile_definitions(proton_vendor
+    INTERFACE
+    PROTON_ENABLE_ALLOC=1
+    PROTON_NODE_BUILDER=1
+    PROTON_NODE_BUILDER_YAML_PARSER=1
+    PROTON_NODE_BUILDER_JSON_PARSER=1
+    PROTON_MAX_PENDING_TRIGGERS=${PROTON_MAX_PENDING_TRIGGERS}
+  )
+
   target_link_libraries(proton_vendor
     INTERFACE
-    ${CMAKE_INSTALL_PREFIX}/lib/libprotonc.so
-    ${CMAKE_INSTALL_PREFIX}/lib/libprotoncpp.so
+    ${CMAKE_INSTALL_PREFIX}/lib/libproton_core.so
+    ${CMAKE_INSTALL_PREFIX}/lib/libproton_cpp.so
   )
 endif()
 

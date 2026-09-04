@@ -13,13 +13,9 @@
 
   <!-- <depend>proton</depend> -->
 
-  <depend>asio</depend>
-  <depend>libboost-system-dev</depend>
-  <depend>libboost-thread-dev</depend>
-  <depend>protobuf-dev</depend>
-  <depend>python3-protobuf</depend>
   <depend>python3-yaml</depend>
   <depend>yaml-cpp</depend>
+  <depend>nlohmann-json-dev</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
