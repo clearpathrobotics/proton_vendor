@@ -11,6 +11,8 @@ add_library(proton_vendor::proton_vendor ALIAS proton_vendor)
 # Option to use local proton instead of downloading from GitHub
 option(PROTON_VENDOR_USE_LOCAL "Use local proton instead of downloading from GitHub" OFF)
 
+set(PROTON_MAX_PENDING_TRIGGERS 4 CACHE STRING "Number of allowable pending triggers in node_manager")
+
 if(PROTON_VENDOR_USE_LOCAL)
   # Use local proton from workspace
   find_package(proton REQUIRED)
@@ -64,6 +66,7 @@ else()
                         -DPROTON_NODE_BUILDER=ON
                         -DPROTON_NODE_BUILDER_YAML_PARSER=ON
                         -DPROTON_NODE_BUILDER_JSON_PARSER=ON
+                        -DPROTON_MAX_PENDING_TRIGGERS=${PROTON_MAX_PENDING_TRIGGERS}
                         -DPROTON_INSTALL=ON
 
       # build step
@@ -95,6 +98,7 @@ else()
     PROTON_NODE_BUILDER=1
     PROTON_NODE_BUILDER_YAML_PARSER=1
     PROTON_NODE_BUILDER_JSON_PARSER=1
+    PROTON_MAX_PENDING_TRIGGERS=${PROTON_MAX_PENDING_TRIGGERS}
   )
 
   target_link_libraries(proton_vendor
