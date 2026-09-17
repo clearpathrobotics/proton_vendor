@@ -29,7 +29,7 @@ else()
 
   set(PROTON_EXTERNAL_PROJECT_NAME proton_external_project)
   set(PROTON_GIT_REPOSITORY "https://github.com/clearpathrobotics/proton.git")
-  set(PROTON_GIT_TAG "2.0.0")
+  set(PROTON_GIT_TAG "2.1.0")
 
   set(EXTERNAL_PROJECT_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/proton_external_build)
   set(EXTERNAL_PROJECT_SOURCE_DIR ${EXTERNAL_PROJECT_PREFIX}/src/proton)
@@ -63,6 +63,7 @@ else()
                         -DCMAKE_CXX_STANDARD_REQUIRED=ON
                         -DPROTON_BUILD_TESTS=OFF
                         -DPROTON_ENABLE_ALLOC=ON
+                        -DPROTON_ENABLE_LOGGING=ON
                         -DPROTON_NODE_BUILDER=ON
                         -DPROTON_NODE_BUILDER_YAML_PARSER=ON
                         -DPROTON_NODE_BUILDER_JSON_PARSER=ON
@@ -95,6 +96,7 @@ else()
   target_compile_definitions(proton_vendor
     INTERFACE
     PROTON_ENABLE_ALLOC=1
+    PROTON_ENABLE_LOGGING=1
     PROTON_NODE_BUILDER=1
     PROTON_NODE_BUILDER_YAML_PARSER=1
     PROTON_NODE_BUILDER_JSON_PARSER=1
