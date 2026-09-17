@@ -27,7 +27,11 @@ else()
 
   set(PROTON_EXTERNAL_PROJECT_NAME proton_external_project)
   set(PROTON_GIT_REPOSITORY "https://github.com/clearpathrobotics/proton.git")
+<<<<<<< HEAD
   set(PROTON_GIT_TAG "1.0.0")
+=======
+  set(PROTON_GIT_TAG "2.1.0")
+>>>>>>> 97c37de (Feature/logging (#24))
 
   set(EXTERNAL_PROJECT_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/proton_external_build)
   set(EXTERNAL_PROJECT_SOURCE_DIR ${EXTERNAL_PROJECT_PREFIX}/src/proton)
@@ -61,6 +65,15 @@ else()
                         -DPROTON_BUILD_PROTONCPP=ON
                         -DPROTON_BUILD_EXAMPLES=OFF
                         -DPROTON_BUILD_TESTS=OFF
+<<<<<<< HEAD
+=======
+                        -DPROTON_ENABLE_ALLOC=ON
+                        -DPROTON_ENABLE_LOGGING=ON
+                        -DPROTON_NODE_BUILDER=ON
+                        -DPROTON_NODE_BUILDER_YAML_PARSER=ON
+                        -DPROTON_NODE_BUILDER_JSON_PARSER=ON
+                        -DPROTON_MAX_PENDING_TRIGGERS=${PROTON_MAX_PENDING_TRIGGERS}
+>>>>>>> 97c37de (Feature/logging (#24))
                         -DPROTON_INSTALL=ON
 
       # build step
@@ -83,6 +96,22 @@ else()
     INTERFACE
     $<INSTALL_INTERFACE:include>
   )
+<<<<<<< HEAD
+=======
+
+  # Propagate compile definitions that were used to build proton
+  # These must match the flags in the ExternalProject CONFIGURE_COMMAND above
+  target_compile_definitions(proton_vendor
+    INTERFACE
+    PROTON_ENABLE_ALLOC=1
+    PROTON_ENABLE_LOGGING=1
+    PROTON_NODE_BUILDER=1
+    PROTON_NODE_BUILDER_YAML_PARSER=1
+    PROTON_NODE_BUILDER_JSON_PARSER=1
+    PROTON_MAX_PENDING_TRIGGERS=${PROTON_MAX_PENDING_TRIGGERS}
+  )
+
+>>>>>>> 97c37de (Feature/logging (#24))
   target_link_libraries(proton_vendor
     INTERFACE
     ${CMAKE_INSTALL_PREFIX}/lib/libprotonc.so
