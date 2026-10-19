@@ -16,6 +16,7 @@ set(PROTON_MAX_PENDING_TRIGGERS 4 CACHE STRING "Number of allowable pending trig
 if(PROTON_VENDOR_USE_LOCAL)
   # Use local proton from workspace
   find_package(proton REQUIRED)
+  ament_export_dependencies(proton)
 
   target_link_libraries(proton_vendor
     INTERFACE
