@@ -11,7 +11,7 @@ add_library(proton_vendor::proton_vendor ALIAS proton_vendor)
 # Option to use local proton instead of downloading from GitHub
 option(PROTON_VENDOR_USE_LOCAL "Use local proton instead of downloading from GitHub" OFF)
 
-set(PROTON_MAX_PENDING_TRIGGERS 4 CACHE STRING "Number of allowable pending triggers in node_manager")
+set(PROTON_MAX_PENDING_TRIGGERS 16 CACHE STRING "Number of allowable pending triggers in node_manager")
 
 if(PROTON_VENDOR_USE_LOCAL)
   # Use local proton from workspace
@@ -30,7 +30,7 @@ else()
 
   set(PROTON_EXTERNAL_PROJECT_NAME proton_external_project)
   set(PROTON_GIT_REPOSITORY "https://github.com/clearpathrobotics/proton.git")
-  set(PROTON_GIT_TAG "2.1.0")
+  set(PROTON_GIT_TAG "2.1.3")
 
   set(EXTERNAL_PROJECT_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/proton_external_build)
   set(EXTERNAL_PROJECT_SOURCE_DIR ${EXTERNAL_PROJECT_PREFIX}/src/proton)
